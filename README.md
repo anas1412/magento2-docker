@@ -12,6 +12,10 @@ As mentioned in Docker docs, Compose is a tool for defining and running multi-co
 
 With the help of docker-compose we can define containers to be built, their configuration, links, volumes, ports etc in a single file and it gets launched by a single command. We can add multiple servers and services just by adding them to docker-compose configuration file. This configuration file is in YAML format.
 
+<p align="center">
+    <img align="center" alt="visitors" src="https://github.com/anas1412/magento2-docker/blob/main/images/IMG-03.jpg" width="500"/>
+</p>
+
 Getting started with docker-compose is a few steps process:
 
 > Create a Dockerfile defining the application environment. We can create separate Dockerfile for our different services. As Dockerfile are lightweight, so our application can be replicated anywhere.
@@ -38,6 +42,10 @@ In this project, we are using:
 
 > PHP version: PHP-7.1
 > (todo: change this to PHP-7.4)
+
+<p align="center">
+    <img align="center" alt="visitors" src="https://github.com/anas1412/magento2-docker/blob/main/images/IMG-02.jpg" width="500"/>
+</p>
 
 To begin with, please install docker and docker-compose on your ubuntu 16.04 server.
 
