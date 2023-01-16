@@ -32,22 +32,19 @@ Docker is an open-source project that can be integrated with almost all the appl
 
 In this project, we are using:
 
-> Operating system: Ubuntu 16.04
-> (todo: change this to Ubuntu 20.04)
+> Operating system: Ubuntu 20.04
 
 > Web Server: Apache2
 
-> Database Server: Mysql-server-5.7
-> (todo: change this to Mysql-server-8.0)
+> Database Server: Mysql-server-8.0
 
-> PHP version: PHP-7.1
-> (todo: change this to PHP-7.4)
+> PHP version: PHP-7.4
 
 <p align="center">
     <img align="center" alt="visitors" src="https://github.com/anas1412/magento2-docker/blob/main/images/IMG-02.jpg" width="900"/>
 </p>
 
-To begin with, please install docker and docker-compose on your ubuntu 16.04 server.
+To begin with, please install docker and docker-compose on your ubuntu 20.04 server.
 
 Then follow the following steps:
 
