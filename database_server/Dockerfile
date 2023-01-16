@@ -6,9 +6,9 @@ env MYSQL_ROOT_PASSWORD ${mysql_password}
 env MYSQL_DATABASE ${mysql_database}
 
 RUN apt-get update \
-    && echo "mysql-server-5.7 mysql-server/root_password password ${mysql_password}" | debconf-set-selections \
-    && echo "mysql-server-5.7 mysql-server/root_password_again password ${mysql_password}" | debconf-set-selections \
-    && DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server-5.7 && \
+    && echo "mysql-server-8 mysql-server/root_password password ${mysql_password}" | debconf-set-selections \
+    && echo "mysql-server-8 mysql-server/root_password_again password ${mysql_password}" | debconf-set-selections \
+    && DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server-8 && \
     mkdir -p /var/lib/mysql && \
     mkdir -p /var/run/mysqld && \
     mkdir -p /var/log/mysql && \
