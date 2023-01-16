@@ -1,17 +1,5 @@
 version: '3'
 services:
-  web_server:
-    build:
-      context: ./web_server/
-    container_name: apache2
-    volumes:
-      - ./magento2:/var/www/html
-      - ./web_server/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
-    ports:
-      - "80:80"
-    links:
-      - database_server
-
   database_server:
     build:
       context: ./database_server/
