@@ -22,6 +22,8 @@ RUN apt-get update \
     && apt-get install -y supervisor \
     && mkdir -p /var/log/supervisor 
 
+RUN rm /etc/apt/preferences.d/no-debian-php
+
 env APACHE_RUN_USER    www-data
 env APACHE_RUN_GROUP   www-data
 env APACHE_PID_FILE    /var/run/apache2.pid
