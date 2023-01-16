@@ -3,7 +3,7 @@
 This repository is a part of my end of studies internship.
 
 <p align="center">
-    <img align="center" alt="visitors" src="https://liveimages.algoworks.com/new-algoworks/wp-content/uploads/2022/06/28161925/DevOps-min.gif" width="500"/>
+    <img align="center" alt="visitors" src="https://github.com/anas1412/magento2-docker/blob/main/images/IMG-01.jpg" width="500"/>
 </p>
 
 #### Docker-Compose Tool
