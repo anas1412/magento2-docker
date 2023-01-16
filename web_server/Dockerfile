@@ -20,7 +20,10 @@ RUN apt-get update \
     && sed -i "s/None/all/g" /etc/apache2/apache2.conf \
     ##install supervisor and setup supervisord.conf file
     && apt-get install -y supervisor \
-    && mkdir -p /var/log/supervisor 
+    && mkdir -p /var/log/supervisor \
+    && apt-get install -y curl \
+    && curl -sS https://getcomposer.org/installer | php \
+    && mv composer.phar /usr/local/bin/composer
 
 RUN rm /etc/apt/preferences.d/no-debian-php
 
