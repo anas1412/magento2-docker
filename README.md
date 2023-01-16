@@ -50,6 +50,8 @@ Then follow the following steps:
 
 1). Clone or download this repository as
 
+> apt update
+> apt install apt-utils docker.io docker-compose
 > git clone https://github.com/anas1412/magento2-docker.git
 
 2. Set mysql root credentials and name of the database to be created . Go to ~/magento2-docker-compose/docker-compose.yml and change mysql root password in database_server in:
