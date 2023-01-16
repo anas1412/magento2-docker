@@ -14,7 +14,6 @@ RUN apt-get update \
     && apt-get -y install php7.4 php7.4-curl php7.4-intl php7.4-gd php7.4-dom php7.4-mcrypt php7.4-iconv php7.4-xsl php7.4-mbstring php7.4-ctype php7.4-zip php7.4-pdo php7.4-xml php7.4-bz2 php7.4-calendar php7.4-exif php7.4-fileinfo php7.4-json php7.4-mysqli php7.4-mysql php7.4-posix php7.4-tokenizer php7.4-xmlwriter php7.4-xmlreader php7.4-phar php7.4-soap php7.4-mysql php7.4-fpm php7.4-bcmath libapache2-mod-php7.4 \
     && sed -i -e"s/^memory_limit\s*=\s*128M/memory_limit = 512M/" /etc/php/7.4/apache2/php.ini \
     && rm /var/www/html/* \
-    && export TERM=xterm \
     && sed -i "s/None/all/g" /etc/apache2/apache2.conf \
     ##install supervisor and setup supervisord.conf file
     && apt-get install -y supervisor \
