@@ -22,5 +22,6 @@ services:
     volumes: 
       - ./database_server/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
       - ./database_server/mysql.sh:/etc/mysql.sh
+      - ./data:/var/lib/mysql
     ports:
       - "3306:3306"
