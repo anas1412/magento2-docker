@@ -2,6 +2,10 @@
 
 This repository is a part of my end of studies internship.
 
+<p align="center">
+    <img align="center" alt="visitors" src="https://liveimages.algoworks.com/new-algoworks/wp-content/uploads/2022/06/28161925/DevOps-min.gif" width="500"/>
+</p>
+
 #### Docker-Compose Tool
 
 As mentioned in Docker docs, Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a Compose file to configure your application’s services. Then, using a single command, you create and start all the services from your configuration.
