@@ -6,6 +6,7 @@ env MYSQL_ROOT_PASSWORD ${mysql_password}
 env MYSQL_DATABASE ${mysql_database}
 
 RUN apt-get update \
+    && export TERM=xterm \
     && echo "mysql-server mysql-server/root_password password ${mysql_password}" | debconf-set-selections \
     && echo "mysql-server mysql-server/root_password_again password ${mysql_password}" | debconf-set-selections \
     && DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server && \
