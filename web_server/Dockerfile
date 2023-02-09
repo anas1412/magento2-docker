@@ -13,9 +13,16 @@ RUN apt-get update \
     && LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php \
     && DEBIAN_FRONTEND=noninteractive dpkg-reconfigure tzdata \
     && apt-get update \
-    #&& apt-get -y install php7.1 php7.1-curl php7.1-intl php7.1-gd php7.1-dom php7.1-mcrypt php7.1-iconv php7.1-xsl php7.1-mbstring php7.1-ctype php7.1-zip php7.1-pdo php7.1-xml php7.1-bz2 php7.1-calendar php7.1-exif php7.1-fileinfo php7.1-json php7.1-mysqli php7.1-mysql php7.1-posix php7.1-tokenizer php7.1-xmlwriter php7.1-xmlreader php7.1-phar php7.1-soap php7.1-mysql php7.1-fpm php7.1-bcmath libapache2-mod-php7.1 \
-    && apt-get -y install php8.1 php8.1-curl php8.1-intl php8.1-gd php8.1-dom php8.1-mcrypt php8.1-iconv php8.1-xsl php8.1-mbstring php8.1-ctype php8.1-zip php8.1-pdo php8.1-xml php8.1-bz2 php8.1-calendar php8.1-exif php8.1-fileinfo php8.1-json php8.1-mysqli php8.1-mysql php8.1-posix php8.1-tokenizer php8.1-xmlwriter php8.1-xmlreader php8.1-phar php8.1-soap php8.1-mysql php8.1-fpm php8.1-bcmath libapache2-mod-php8.1 \
-    && sed -i -e"s/^memory_limit\s*=\s*128M/memory_limit = 512M/" /etc/php/8.1/apache2/php.ini \
+    && apt-get install -y php7.2 php7.2-cli php7.2-common php7.2-fpm \
+    && apt-get install -y php7.2-mysql php7.2-dom php7.2-simplexml php7.2-ssh2 php7.2-xml php7.2-xmlreader php7.2-curl  php7.2-exif  php7.2-ftp php7.2-gd  php7.2-iconv php7.2-imagick php7.2-json  php7.2-mbstring php7.2-posix php7.2-sockets php7.2-tokenizer \
+    && apt-get install -y php7.2-mysqli php7.2-pdo  php7.2-sqlite3 php7.2-ctype php7.2-fileinfo php7.2-zip php7.2-exif \
+    && apt-get install -y php7.2 libapache2-mod-php7.2 php7.2-common php7.2-gd hp7.2-mysql php7.2-curl php7.2-intl php7.2-xsl php7.2-mbstring php7.2-zip php7.2-bcmath php7.2-soap php-xdebug php-imagick \
+    && sed -i 's/file_uploads = Off/file_uploads = On/g' /etc/php/7.2/apache2/php.ini \
+    && sed -i 's/allow_url_fopen = Off/allow_url_fopen = On/g' /etc/php/7.2/apache2/php.ini \
+    && sed -i 's/short_open_tag = Off/short_open_tag = On/g' /etc/php/7.2/apache2/php.ini \
+    && sed -i 's/memory_limit = 128M/memory_limit = 512M/g' /etc/php/7.2/apache2/php.ini \
+    && sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 128M/g' /etc/php/7.2/apache2/php.ini \
+    && sed -i 's/max_execution_time = 30/max_execution_time = 3600/g' /etc/php/7.2/apache2/php.ini \
     && rm /var/www/html/* \
     && sed -i "s/None/all/g" /etc/apache2/apache2.conf \
     ##install supervisor and setup supervisord.conf file
@@ -23,9 +30,9 @@ RUN apt-get update \
     && mkdir -p /var/log/supervisor \
     && apt-get install -y curl \
     && curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/composer
+    && mv composer.phar /usr/local/bin/composer 
 
-RUN rm /etc/apt/preferences.d/no-debian-php
+#RUN rm /etc/apt/preferences.d/no-debian-php
 
 env APACHE_RUN_USER    www-data
 env APACHE_RUN_GROUP   www-data
@@ -35,7 +42,6 @@ env APACHE_LOCK_DIR    /var/lock/apache2
 env APACHE_LOG_DIR     /var/log/apache2
 env LANG               C
 
-WORKDIR /var/www/html
+WORKDIR /var/www/html/backend-magento
 
 CMD ["/usr/bin/supervisord"]
-
