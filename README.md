@@ -36,9 +36,11 @@ In this project, we are using:
 
 > Web Server: Apache2
 
+> CMS: Magento 2.3
+
 > Database Server: Mysql-server-8.0
 
-> PHP version: PHP-7.4
+> PHP version: PHP-7.2
 
 <p align="center">
     <img align="center" alt="visitors" src="https://github.com/anas1412/magento2-docker/blob/main/images/IMG-02.jpg" width="900"/>
