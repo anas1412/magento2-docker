@@ -4,6 +4,8 @@ services:
     build:
       context: ./web_server/
     container_name: apache2
+    environment:
+      - VIRTUAL_HOST=magento.local
     volumes:
       - ./backend-magento:/var/www/html/backend-magento
       - ./web_server/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
@@ -24,7 +26,7 @@ services:
       MYSQL_PASSWORD: magento2
       MYSQL_ROOT_PASSWORD: magento2
     volumes:
-      - ./kamioun.sql:/var/lib/mysql/kamioun.sql
+      - ./kamioun.sql:/var/lib/kamioun.sql
       - ./mysql:/var/lib/mysql
     ports:
       - "3306:3306"

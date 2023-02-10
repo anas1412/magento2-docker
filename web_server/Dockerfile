@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
-    && apt-get -y install apache2 nano mysql-client \
+    && apt-get -y install apache2 nano mysql-client cron \
     && a2enmod rewrite \
     && a2enmod headers \
     && export LANG=en_US.UTF-8 \
