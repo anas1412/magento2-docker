@@ -4,8 +4,8 @@ services:
     build:
       context: ./web_server/
     container_name: apache2
-    environment:
-      - VIRTUAL_HOST=magento.local
+    #environment:
+    #  - VIRTUAL_HOST=magento.local
     volumes:
       - ./backend-magento:/var/www/html/backend-magento
       - ./web_server/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
@@ -14,7 +14,9 @@ services:
       - /etc/localtime:/etc/localtime:ro
     ports:
       - "80:80"
-    links:
+    #links:
+    #  - mysql_db
+    depends_on:
       - mysql_db
 
   mysql_db:
@@ -28,6 +30,7 @@ services:
     volumes:
       - ./kamioun.sql:/var/lib/kamioun.sql
       - ./mysql:/var/lib/mysql
+      #- ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "3306:3306"
 
