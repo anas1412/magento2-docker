@@ -12,15 +12,15 @@ echo "Database exist!"
 
 echo "Applying Database"
 
-if [ $(du -m /var/lib/kamioun.sql | awk '{print $1}') -ls 10 ]; then
-    if ! docker exec -ti mysql_db bash -c 'mysql -u root -p"magento2" kamioun < /var/lib/kamioun.sql'; then
-        echo "Error: Failed to access mysql container to apply database"
-        exit 1
-    fi
-    echo "Database applied!"
-    else
-        echo "Database already applied!"
-fi
+#if docker exec -ti mysql_db bash -c "$(du -m /var/lib/kamioun.sql | awk '{print $1}') -lt 10" ; then
+    #if ! docker exec -ti mysql_db bash -c 'mysql -u root -p"magento2" kamioun < /var/lib/kamioun.sql'; then
+    #    echo "Error: Failed to access mysql container to apply database"
+    #    exit 1
+    #fi
+    #echo "Database applied!"
+    #else
+        #echo "Database already applied!"
+#fi
 
 echo "Checking Backend Magento Folder"
 
@@ -34,17 +34,17 @@ echo "Backend Magento Folder exist!"
 
 echo "Installing Magento Store"
 
-if ! docker exec -ti web_server bash -c 'php bin/magento module:enable --all'; then
-    echo "Error: Failed to enable modules"
-    exit 1
-fi
+#if ! docker exec -ti web_server bash -c 'php bin/magento module:enable --all'; then
+#    echo "Error: Failed to enable modules"
+#    exit 1
+#fi
 
 echo "Enabling Modules"
 
-if ! docker exec -ti web_server bash -c 'chown -R www-data: /var/www/'; then
-    echo "Error: Failed to change owner of /var/www/"
-    exit 1
-fi
+#if ! docker exec -ti web_server bash -c 'chown -R www-data: /var/www/'; then
+ #   echo "Error: Failed to change owner of /var/www/"
+#    exit 1
+#fi
 
 echo "Changing owner of /var/www/"
 
@@ -84,10 +84,10 @@ fi
 
 echo "Installing magento"
 
-if ! docker exec -ti web_server bash -c 'bin/magento cron:install'; then
-    echo "Error: Failed to install cron"
-    exit 1
-fi
+#if ! docker exec -ti web_server bash -c 'bin/magento cron:install'; then
+#    echo "Error: Failed to install cron"
+#    exit 1
+#fi
 
 echo "Installing cron"
 
