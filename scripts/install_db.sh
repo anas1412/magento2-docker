@@ -2,7 +2,7 @@
 
 echo "Checking Database"
 
-if [ ! -f "kamioun.sql" ]; then
+if [ ! -f "../kamioun.sql" ]; then
     echo "Error: File kamioun.sql not found"
     echo "Please make sure that a database exist in current directory"
     exit 1
