@@ -4,7 +4,9 @@
 #sudo a+x /scripts/*
 
 # Define menu options
-options=("Install Database" 
+options=("Run Docker Compose"
+         "Stop Docker Compose"
+         "Install Database" 
          "Install composer and necessary dependencies"
          "Install magento store"
          "Upgrade and deploy magento store"
@@ -25,34 +27,43 @@ while true; do
     read -r choice
     case $choice in
         1)
+            echo "Run Docker Compose"
+            docker-compose up -d
+            echo "use docker ps to check if containers are running"
+            ;;
+        2)
+            echo "Stop Docker Compose"
+            docker-compose down
+            ;;
+        3)
             echo "Installing Database"
             chmod a+x ./scripts/install_db.sh && ./scripts/install_db.sh
             ;;
-        2)
+        4)
             echo "Installing composer and necessary dependencies"
             chmod a+x ./scripts/install_composer.sh && ./scripts/install_composer.sh
             ;;
-        3)
+        5)
             echo "Installing magento store"
             chmod a+x ./scripts/install_magento.sh && ./scripts/install_magento.sh
             ;;
-        4)
+        6)
             echo "Upgrading and deploying magento store"
             chmod a+x ./scripts/upgrade_magento.sh && ./scripts/upgrade_magento.sh
             ;;
-        5)
+        7)
             echo "Cleaning cache"
             chmod a+x ./scripts/clean_cache.sh && ./scripts/clean_cache.sh
             ;;
-        6)
+        8)
             echo "Setting permissions"
             chmod a+x ./scripts/set_permissions.sh && ./scripts/set_permissions.sh
             ;;
-        7)
+        9)
             echo "Setting URL"
             chmod a+x ./scripts/set_url.sh && ./scripts/set_url.sh
             ;;
-        8)
+        10)
             echo "Exiting"
             exit 0
             ;;
