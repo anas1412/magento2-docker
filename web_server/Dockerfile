@@ -45,3 +45,4 @@ env LANG               C
 WORKDIR /var/www/html/backend-magento
 
 CMD ["/usr/bin/supervisord"]
+#CMD ["apache2", "-D", "FOREGROUND"]
