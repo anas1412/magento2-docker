@@ -8,6 +8,13 @@ fi
 
 echo "Installing magento"
 
+if ! docker exec -ti web_server bash -c 'chown -R www-data: /var/www/'; then
+    echo "Error: Failed to change owner of /var/www/"
+    exit 1
+fi
+
+echo "Changing owner of /var/www/"
+
 #if ! docker exec -ti web_server bash -c 'bin/magento cron:install'; then
 #    echo "Error: Failed to install cron"
 #    exit 1

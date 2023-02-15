@@ -32,7 +32,7 @@ fi
 
 echo "Changing permissions of bin/magento"
 
-f ! docker exec -ti web_server bash -c 'update-alternatives --set php /usr/bin/php7.2'; then
+if ! docker exec -ti web_server bash -c 'update-alternatives --set php /usr/bin/php7.2'; then
     echo "Error: Failed to change php version"
     exit 1
 fi
