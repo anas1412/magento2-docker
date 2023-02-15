@@ -35,11 +35,9 @@ fi
 
 echo "Changing permissions of bin"
 
-echo "Permissions changed!"
+if ! docker exec -ti web_server bash -c 'chown -R www-data: /var/www/'; then
+    echo "Error: Failed to change owner of /var/www/"
+    exit 1
+fi
 
-#if ! docker exec -ti web_server bash -c 'chown -R kamiounusr:kamiounusr .'; then
-#    echo "Error: Failed to change owner of /var/www/"
-#    exit 1
-#fi
-
-#echo "Changing owner of /var/www/"
+echo "Changing owner of /var/www/"
