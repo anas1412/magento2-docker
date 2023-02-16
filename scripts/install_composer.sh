@@ -18,12 +18,6 @@ echo "Backend Magento Folder exist!"
 
 #echo "Enabling Modules"
 
-#if ! docker exec -ti web_server bash -c 'chown -R www-data: /var/www/'; then
- #   echo "Error: Failed to change owner of /var/www/"
-#    exit 1
-#fi
-
-#echo "Changing owner of /var/www/"
 
 if ! docker exec -ti web_server bash -c 'chmod u+x bin/magento'; then
     echo "Error: Failed to change permissions of bin/magento"

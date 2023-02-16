@@ -15,9 +15,9 @@ fi
 
 echo "Changing owner of /var/www/"
 
-#if ! docker exec -ti web_server bash -c 'bin/magento cron:install'; then
-#    echo "Error: Failed to install cron"
-#    exit 1
-#fi
+if ! docker exec -ti web_server bash -c 'bin/magento cron:install'; then
+    echo "Error: Failed to install cron"
+    exit 1
+fi
 
-#echo "Installing cron"
+echo "Installing cron"
