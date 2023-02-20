@@ -5,11 +5,11 @@
 
 # Define menu options
 options=("Install Docker & Docker Compose"
-         "Run Docker Compose"
-         "Stop Docker Compose"
-         "Install Database and Magento Store"
+         "Download Magento Backend and Database, run docker and apply database and Magento Store"
          "Upgrade and deploy magento store"
          "Set URL"
+         "Run Docker Compose"
+         "Stop Docker Compose"
          "Exit")
 
 # Loop to display menu and process user input
@@ -31,19 +31,13 @@ while true; do
             echo "//Docker installed//"
             ;;
         2)
+            echo "//Downloading Magento Backend and Database//"
+            chmod a+x ./scripts/download_magento.sh && ./scripts/download_magento.sh
+            chmod a+x ./scripts/download_db.sh && ./scripts/download_db.sh
             echo "//Run Docker Compose//"
             docker-compose up -d
             echo "//use docker ps to check if containers are running//"
-            ;;
-        3)
-            echo "//Stop Docker Compose//"
-            docker-compose down
-            ;;
-        4)
-            echo "//Run Docker Compose//"
-            docker-compose up -d
-            echo "//use docker ps to check if containers are running//"
-            echo "//Installing Database//"
+            echo "//Install Database//"
             chmod a+x ./scripts/install_db.sh && ./scripts/install_db.sh
             echo "//Installing composer and necessary dependencies//"
             chmod a+x ./scripts/install_composer.sh && ./scripts/install_composer.sh
@@ -55,8 +49,9 @@ while true; do
             chmod a+x ./scripts/set_permissions.sh && ./scripts/set_permissions.sh
             echo "//Setting URL//"
             chmod a+x ./scripts/set_url.sh && ./scripts/set_url.sh
+            echo "//Visit your magento admin dashboard at: http://127.0.0.1/backend-magento/ //"
             ;;
-        5)  
+        3)  
             echo "//Run Docker Compose//"
             docker-compose up -d
             echo "//use docker ps to check if containers are running//"
@@ -70,10 +65,21 @@ while true; do
             chmod a+x ./scripts/set_permissions.sh && ./scripts/set_permissions.sh
             echo "//Setting URL//"
             chmod a+x ./scripts/set_url.sh && ./scripts/set_url.sh
+            echo "//Visit your magento admin dashboard at: http://127.0.0.1/backend-magento/ //"
             ;;
-        6)
+        4)
             echo "//Setting URL//"
             chmod a+x ./scripts/set_url.sh && ./scripts/set_url.sh
+            echo "//Visit your magento admin dashboard at: http://127.0.0.1/backend-magento/ //"
+            ;;
+        5)
+            echo "//Run Docker Compose//"
+            docker-compose up -d
+            echo "//use docker ps to check if containers are running//"
+            ;;
+        6)
+            echo "//Stop Docker Compose//"
+            docker-compose down
             ;;
         7)
             echo "//Exiting//"
