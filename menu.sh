@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Make scripts executable
-#sudo a+x /scripts/*
+#a+x /scripts/*
 
 # Define menu options
 options=("Install Docker & Docker Compose"
-         "Download Magento Backend and Database, run docker and apply database and Magento Store"
+         "Run docker and apply database and Magento Store"
          "Upgrade and deploy magento store"
          "Set URL"
          "Run Docker Compose"
@@ -26,7 +26,7 @@ while true; do
     case $choice in
         1)
             echo "//Updating packages//"
-            sudo apt update -y
+            apt update -y
 
             if [ $? -ne 0 ]; then
             echo "Error: Failed to update packages."
@@ -34,7 +34,7 @@ while true; do
             fi
 
             echo "//Installing Docker//"
-            sudo apt install docker.io docker-compose -y
+            apt install docker.io docker-compose -y
 
             if [ $? -ne 0 ]; then
             echo "Error: Failed to install docker.io and docker-compose."
@@ -44,23 +44,17 @@ while true; do
             echo "//Docker installed//"
             ;;
         2)
-            echo "//Downloading Magento Backend and Database//"
-            chmod a+x ./scripts/download_magento.sh && ./scripts/download_magento.sh
+            #echo "//Downloading Database//"
 
-            if [ $? -ne 0 ]; then
-            echo "Error: Failed to execute download_magento.sh script."
-            exit 1
-            fi
+            #chmod a+x ./scripts/download_db.sh && ./scripts/download_db.sh
 
-            chmod a+x ./scripts/download_db.sh && sudo ./scripts/download_db.sh
-
-            if [ $? -ne 0 ]; then
-            echo "Error: Failed to execute download_db.sh script."
-            exit 1
-            fi
+            #if [ $? -ne 0 ]; then
+            #echo "Error: Failed to execute download_db.sh script."
+            #exit 1
+            #fi
 
             echo "//Run Docker Compose//"
-            sudo docker-compose up -d
+            docker-compose up -d
 
             if [ $? -ne 0 ]; then
             echo "Error: Failed to execute docker-compose command."
@@ -69,7 +63,7 @@ while true; do
 
             echo "//use docker ps to check if containers are running//"
             echo "//Install Database//"
-            chmod a+x ./scripts/install_db.sh && sudo ./scripts/install_db.sh
+            chmod a+x ./scripts/install_db.sh && ./scripts/install_db.sh
 
             if [ $? -ne 0 ]; then
             echo "Error: Failed to execute install_db.sh script."
@@ -77,7 +71,7 @@ while true; do
             fi
 
             echo "//Installing composer and necessary dependencies//"
-            chmod a+x ./scripts/install_composer.sh && sudo ./scripts/install_composer.sh
+            chmod a+x ./scripts/install_composer.sh && ./scripts/install_composer.sh
 
             if [ $? -ne 0 ]; then
             echo "Error: Failed to execute install_composer.sh script."
@@ -85,7 +79,7 @@ while true; do
             fi
 
             echo "//Installing magento store//"
-            chmod a+x ./scripts/install_magento.sh && sudo ./scripts/install_magento.sh
+            chmod a+x ./scripts/install_magento.sh && ./scripts/install_magento.sh
 
             if [ $? -ne 0 ]; then
             echo "Error: Failed to execute install_magento.sh script."
@@ -93,7 +87,7 @@ while true; do
             fi
 
             echo "//Cleaning cache//"
-            chmod a+x ./scripts/clean_cache.sh && sudo ./scripts/clean_cache.sh
+            chmod a+x ./scripts/clean_cache.sh && ./scripts/clean_cache.sh
 
             if [ $? -ne 0 ]; then
             echo "Error: Failed to execute clean_cache.sh script."
@@ -101,7 +95,7 @@ while true; do
             fi
 
             echo "//Setting permissions//"
-            chmod a+x ./scripts/set_permissions.sh && sudo ./scripts/set_permissions.sh
+            chmod a+x ./scripts/set_permissions.sh && ./scripts/set_permissions.sh
 
             if [ $? -ne 0 ]; then
             echo "Error: Failed to execute set_permissions.sh script."
@@ -109,18 +103,21 @@ while true; do
             fi
 
             echo "//Setting URL//"
-            chmod a+x ./scripts/set_url.sh && sudo ./scripts/set_url.sh
+            chmod a+x ./scripts/set_url.sh && ./scripts/set_url.sh
 
             if [ $? -ne 0 ]; then
             echo "Error: Failed to execute set_url.sh script."
             exit 1
             fi
 
-            echo "//Visit your magento admin dashboard at: http://127.0.0.1/backend-magento/ //"
+            echo "Admin Dashboard is in:"
+            grep -o "admin_.*" ./backend-magento/app/etc/env.php | sed "s/'//g"
+            echo "Admin user: admin"
+            echo "Admin password: admin123"
             ;;
         3)  
             echo "//Run Docker Compose//"
-            sudo docker-compose up -d
+            docker-compose up -d
 
             if [ $? -ne 0 ]; then
             echo "Error: Failed to execute docker-compose command."
@@ -129,7 +126,7 @@ while true; do
 
             echo "//use docker ps to check if containers are running//"
             echo "//Installing composer and necessary dependencies//"
-            chmod a+x ./scripts/install_composer.sh && sudo ./scripts/install_composer.sh
+            chmod a+x ./scripts/install_composer.sh && ./scripts/install_composer.sh
 
             if [ $? -ne 0 ]; then
             echo "Error: Failed to execute install_composer.sh script."
@@ -137,7 +134,7 @@ while true; do
             fi
 
             echo "//Upgrading and deploying magento store//"
-            chmod a+x ./scripts/upgrade_magento.sh && sudo ./scripts/upgrade_magento.sh
+            chmod a+x ./scripts/upgrade_magento.sh && ./scripts/upgrade_magento.sh
 
             if [ $? -ne 0 ]; then
             echo "Error: Failed to execute upgrade_magento.sh script."
@@ -145,7 +142,7 @@ while true; do
             fi
 
             echo "//Cleaning cache//"
-            chmod a+x ./scripts/clean_cache.sh && sudo ./scripts/clean_cache.sh
+            chmod a+x ./scripts/clean_cache.sh && ./scripts/clean_cache.sh
 
             if [ $? -ne 0 ]; then
             echo "Error: Failed to execute clean_cache.sh script."
@@ -153,7 +150,7 @@ while true; do
             fi
 
             echo "//Setting permissions//"
-            chmod a+x ./scripts/set_permissions.sh && sudo ./scripts/set_permissions.sh
+            chmod a+x ./scripts/set_permissions.sh && ./scripts/set_permissions.sh
 
             if [ $? -ne 0 ]; then
             echo "Error: Failed to execute set_permissions.sh script."
@@ -161,18 +158,23 @@ while true; do
             fi
 
             echo "//Setting URL//"
-            chmod a+x ./scripts/set_url.sh && sudo ./scripts/set_url.sh
+            chmod a+x ./scripts/set_url.sh && ./scripts/set_url.sh
 
             if [ $? -ne 0 ]; then
             echo "Error: Failed to execute set_url.sh script."
             exit 1
             fi
 
-            echo "//Visit your magento admin dashboard at: http://127.0.0.1/backend-magento/ //"
+            echo "//Visit your magento url at: http://127.0.0.1/backend-magento/ //"
+
+            echo "Admin Dashboard is in:"
+            grep -o "admin_.*" ./backend-magento/app/etc/env.php | sed "s/'//g"
+            echo "Admin user: admin"
+            echo "Admin password: admin123"
             ;;
         4)
             echo "//Setting URL//"
-            chmod a+x ./scripts/set_url.sh && sudo ./scripts/set_url.sh
+            chmod a+x ./scripts/set_url.sh && ./scripts/set_url.sh
 
             if [ $? -ne 0 ]; then
             echo "Error: Failed to execute set_url.sh script."
@@ -180,10 +182,15 @@ while true; do
             fi
 
             echo "//Visit your magento admin dashboard at: http://127.0.0.1/backend-magento/ //"
+
+            echo "Admin Dashboard is in:"
+            grep -o "admin_.*" ./backend-magento/app/etc/env.php | sed "s/'//g"
+            echo "Admin user: admin"
+            echo "Admin password: admin123"
             ;;
         5)
             echo "//Run Docker Compose//"
-            sudo docker-compose up -d
+            docker-compose up -d
 
             if [ $? -ne 0 ]; then
             echo "Error: Failed to execute docker-compose command."
@@ -194,7 +201,7 @@ while true; do
             ;;
         6)
             echo "//Stop Docker Compose//"
-            sudo docker-compose down
+            docker-compose down
 
             if [ $? -ne 0 ]; then
             echo "Error: Failed to execute docker-compose command."
@@ -203,7 +210,7 @@ while true; do
 
             ;;
         7)
-            chmod a+x ./scripts/remove.sh && sudo ./scripts/remove.sh
+            chmod a+x ./scripts/remove.sh && ./scripts/remove.sh
 
             if [ $? -ne 0 ]; then
             echo "Error: Failed to execute remove.sh script."

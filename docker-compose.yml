@@ -9,7 +9,6 @@ services:
     volumes:
       - ./backend-magento:/var/www/html/backend-magento
       - ./web_server/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
-      - ./web_server/deploy.sh:/var/www/html/backend-magento/deploy.sh
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:

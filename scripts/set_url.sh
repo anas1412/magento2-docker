@@ -1,17 +1,17 @@
 #!/bin/bash
 
-if ! docker exec -ti web_server bash -c 'bin/magento setup:store-config:set --base-url="http://127.0.0.1/backend-magento"'; then
+if ! docker exec -ti mysql_db bash -c 'mysql -u "root" -p"magento2" kamioun -e "UPDATE core_config_data SET value = '\''http://127.0.0.1/backend-magento/'\'' WHERE path = '\''web/unsecure/base_url'\''";'; then
     echo "Error: Failed to set base url"
     exit 1
 fi
 
-#echo "Setting base url"
+echo "Setting base url"
 
-#if ! docker exec -ti web_server bash -c 'bin/magento setup:store-config:set --base-url-secure="https://backend-magento.magento.local"'; then
-#    echo "Error: Failed to set base url secure"
-#    exit 1
-#fi
+if ! docker exec -ti mysql_db bash -c 'mysql -u "root" -p"magento2" kamioun -e "UPDATE core_config_data SET value = '\''http://127.0.0.1/backend-magento/'\'' WHERE path = '\''web/secure/base_url'\''";'; then
+    echo "Error: Failed to set base url"
+    exit 1
+fi
 
-#echo "Setting base url secure"
+echo "Setting base url secure"
 
 echo "Please visit http://127.0.0.1/backend-magento to access your store"
