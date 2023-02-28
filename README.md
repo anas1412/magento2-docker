@@ -57,12 +57,15 @@ Then follow the following steps:
 2). You need a Backend Magento source code
 
 > cd magento2-docker
+
 > git clone git@gitlab.com:kamioun/internal/backend-magento.git
 
 3). You need a database dump
 
 > cd ..
+
 > scp kamiounusr@backoffice-staging.kamioun.com:kamioun_prod_$(date +%F).sql .
+
 > mv ./kamioun_prod_$(date +%F).sql ./kamioun.sql
 
 4). Run the menu script
