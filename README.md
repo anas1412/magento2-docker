@@ -50,41 +50,24 @@ To begin with, please install docker and docker-compose on your ubuntu 20.04 ser
 
 Then follow the following steps:
 
-1). Clone or download this repository as
+1). Clone the repository
 
-> apt update
-> apt install apt-utils docker.io docker-compose
 > git clone https://github.com/anas1412/magento2-docker.git
 
-2. Set mysql root credentials and name of the database to be created . Go to ~/magento2-docker-compose/docker-compose.yml and change mysql root password in database_server in:
+2). You need a Backend Magento source code
 
-> mysql_password=
+> cd magento2-docker
+> git clone git@gitlab.com:kamioun/internal/backend-magento.git
 
-> mysql_database=
+3). You need a database dump
 
-3). Download Magento 2 version you wish to dockerize and upload it in directory magento2 in parallel docker-compose.yml.
+> cd ..
+> scp kamiounusr@backoffice-staging.kamioun.com:kamioun_prod_$(date +%F).sql .
+> mv ./kamioun_prod_$(date +%F).sql ./kamioun.sql
 
-> Go to https://magento.com/tech-resources/download? .
+4). Run the menu script
 
-4). Build the docker image.
-
-> docker-compose build
-
-6). Check the built image as:
-
-> docker images
-
-7). Run the containers from built image as:
-
-> docker-compose up -d
-
-8). Check the running docker containers by command:
-
-> docker-compose ps
-
-> docker ps
-
-Now, your server setup is all ready, now hit your domain name or IP to install Magento 2. For more details.
+> sudo ./menu.sh
 
 #### GETTING SUPPORT
 
